@@ -1,0 +1,526 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project
+vALU
+!s110 1554516113
+!i10b 1
+!s100 Q<eo1^VjlE@_g1;Xe<P7O2
+I1ff>JYfcP[fha`>=]_KQh3
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1554516110
+8C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/ALU_structural.v
+FC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/ALU_structural.v
+L0 1
+Z2 OP;L;10.4a;61
+r1
+!s85 0
+31
+!s108 1554516113.000000
+!s107 C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/ALU_structural.v|
+!s90 -reportprogress|300|-work|work|C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/ALU_structural.v|
+!s101 -O0
+!i113 1
+Z3 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact -O0
+n@a@l@u
+vALU_test
+!s110 1554515045
+!i10b 1
+!s100 f5hhfainJ:7JU7@49Qi`X3
+I9zzXN9b2hQ<4<Zb>kCH[[3
+R1
+R0
+w1554514931
+8C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/ALU_structural_test.v
+FC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/ALU_structural_test.v
+L0 3
+R2
+r1
+!s85 0
+31
+!s108 1554515045.000000
+!s107 C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/ALU_structural_test.v|
+!s90 -reportprogress|300|-work|work|C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/ALU_structural_test.v|
+!s101 -O0
+!i113 1
+R3
+n@a@l@u_test
+vandbitwise
+!s110 1554428600
+!i10b 1
+!s100 U@^X0X_m@]8YN4TCD>^ZY0
+IV9[e2R@Fc7K6[ES1XKd_z0
+R1
+R0
+w1554428592
+8C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/andbitwise.v
+FC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/andbitwise.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1554428600.000000
+!s107 C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/andbitwise.v|
+!s90 -reportprogress|300|-work|work|C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/andbitwise.v|
+!s101 -O0
+!i113 1
+R3
+vbitshiftleft
+!s110 1554515339
+!i10b 1
+!s100 MGFUOLOKLL5NCkSEdW[kW2
+I>05[ldS[WI;9@Qb`oibW:0
+R1
+R0
+w1554077583
+8C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/bitshiftleft.v
+FC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/bitshiftleft.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1554515339.000000
+!s107 C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/bitshiftleft.v|
+!s90 -reportprogress|300|-work|work|C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/bitshiftleft.v|
+!s101 -O0
+!i113 1
+R3
+vbitshiftright
+!s110 1554515340
+!i10b 1
+!s100 MI>eAV3;VYWHPa=MafVO93
+InAR93MFdOoDW_J4n9JS5>0
+R1
+R0
+w1554515333
+8C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/bitshiftright.v
+FC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/bitshiftright.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1554515340.000000
+!s107 C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/bitshiftright.v|
+!s90 -reportprogress|300|-work|work|C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/bitshiftright.v|
+!s101 -O0
+!i113 1
+R3
+vcarry_look_ahead_adder
+!s110 1554428212
+!i10b 1
+!s100 ho:3]di[LN=c3KZCL;iOQ1
+I:ICd4K:W][TEFLYJNC:X70
+R1
+R0
+Z4 w1550821588
+8C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/adder.v
+FC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/adder.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1554428212.000000
+!s107 C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/adder.v|
+!s90 -reportprogress|300|-work|work|C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/adder.v|
+!s101 -O0
+!i113 1
+R3
+vcarrylookaheadsub
+!s110 1554428387
+!i10b 1
+!s100 z`fQ0SBmg=Qe>V2LZQ_j20
+IkRAOfEeAGL4d82W]oTYz63
+R1
+R0
+w1550805902
+8C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/sub1bit.v
+FC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/sub1bit.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1554428387.000000
+!s107 C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/sub1bit.v|
+!s90 -reportprogress|300|-work|work|C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/sub1bit.v|
+!s101 -O0
+!i113 1
+R3
+vcomparator_1bit
+!s110 1554428234
+!i10b 1
+!s100 P96QgWeM66MebN<kM>Ho[1
+I2V<F]DeXf_H_Ggc6Y8OAO0
+R1
+R0
+Z5 w1550205133
+8C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/comparator_1bit.v
+FC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/comparator_1bit.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1554428234.000000
+!s107 C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/comparator_1bit.v|
+!s90 -reportprogress|300|-work|work|C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/comparator_1bit.v|
+!s101 -O0
+!i113 1
+R3
+vcomparator_32bit
+!s110 1554516708
+!i10b 1
+!s100 oelCL8?Dnl?[?@jm_<kRB0
+Il4Sn`IzS`<QKjk9AU>^;70
+R1
+R0
+w1554516687
+8C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/comparator_32bit.v
+FC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/comparator_32bit.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1554516708.000000
+!s107 C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/comparator_32bit.v|
+!s90 -reportprogress|300|-work|work|C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/comparator_32bit.v|
+!s101 -O0
+!i113 1
+R3
+vcomparator_8bit
+!s110 1554428237
+!i10b 1
+!s100 z<RicES:KAM;XU`A^Kj`?1
+I[>1;R=?iV=22m6hG>X<L<1
+R1
+R0
+R5
+8C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/comparator_8bit.v
+FC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/comparator_8bit.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1554428237.000000
+!s107 C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/comparator_8bit.v|
+!s90 -reportprogress|300|-work|work|C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/comparator_8bit.v|
+!s101 -O0
+!i113 1
+R3
+vCON_test
+!s110 1555028976
+!i10b 1
+!s100 CTh<lM>L3jLGZ8hGDa9_=2
+I9<I86;3g72LN5[alPGCPV3
+R1
+R0
+w1555028483
+8C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/controller_test.v
+FC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/controller_test.v
+L0 3
+R2
+r1
+!s85 0
+31
+!s108 1555028976.000000
+!s107 C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/controller_test.v|
+!s90 -reportprogress|300|-work|work|C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/controller_test.v|
+!s101 -O0
+!i113 1
+R3
+n@c@o@n_test
+vControl
+!s110 1555029322
+!i10b 1
+!s100 FoR<ijNG^LUk8bZc:N7UE3
+IknXc07jC0g4Ae^[[ie][l1
+R1
+R0
+w1555029315
+8C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/Control_Unit.v
+FC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/Control_Unit.v
+L0 3
+R2
+r1
+!s85 0
+31
+!s108 1555029322.000000
+!s107 C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/Control_Unit.v|
+!s90 -reportprogress|300|-work|work|C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/Control_Unit.v|
+!s101 -O0
+!i113 1
+R3
+n@control
+vDiv
+!s110 1554428244
+!i10b 1
+!s100 ``B]:QY7CLj:?cYnkH=5L2
+II9e65zd66S]^JP44Z<U7P2
+R1
+R0
+w1554427816
+8C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/div.v
+FC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/div.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1554428244.000000
+!s107 C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/div.v|
+!s90 -reportprogress|300|-work|work|C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/div.v|
+!s101 -O0
+!i113 1
+R3
+n@div
+vMemController
+!s110 1554431984
+!i10b 1
+!s100 `i[3AALZQ=KXzZo_>QYjF0
+I=_57IBZigJA=<S8OK:5ah1
+R1
+R0
+w1554431275
+8C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/memController.v
+FC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/memController.v
+L0 3
+R2
+r1
+!s85 0
+31
+!s108 1554431984.000000
+!s107 C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/memController.v|
+!s90 -reportprogress|300|-work|work|C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/memController.v|
+!s101 -O0
+!i113 1
+R3
+n@mem@controller
+vMultiply
+!s110 1554428248
+!i10b 1
+!s100 DCTeh8@]21b=PVkgdWS813
+IQZb:Mbe]Bm[M]J8dg>b@12
+R1
+R0
+w1554427747
+8C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/mult.v
+FC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/mult.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1554428248.000000
+!s107 C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/mult.v|
+!s90 -reportprogress|300|-work|work|C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/mult.v|
+!s101 -O0
+!i113 1
+R3
+n@multiply
+vmux16to1
+!s110 1554515226
+!i10b 1
+!s100 AOel9=iiMXAO?CcMBeRFQ3
+If;anbZKP2:KOeW;DRkR3d2
+R1
+R0
+w1554429770
+8C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/mux1to16.v
+FC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/mux1to16.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1554515226.000000
+!s107 C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/mux1to16.v|
+!s90 -reportprogress|300|-work|work|C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/mux1to16.v|
+!s101 -O0
+!i113 1
+R3
+vnbit_adder
+!s110 1554428253
+!i10b 1
+!s100 @H@D8R:cDJodFXX:bz4T01
+I:C@JaR_DoZeEH__YdfX:m1
+R1
+R0
+R4
+8C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/nbit_adder.v
+FC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/nbit_adder.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1554428253.000000
+!s107 C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/nbit_adder.v|
+!s90 -reportprogress|300|-work|work|C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/nbit_adder.v|
+!s101 -O0
+!i113 1
+R3
+vorbitwise
+!s110 1554515472
+!i10b 1
+!s100 6;FCK@WCPPjVY40Rm]5Ud0
+IlIX@R9]:dM50:MI@Co8^o0
+R1
+R0
+w1554515463
+8C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/orbitwise.v
+FC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/orbitwise.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1554515472.000000
+!s107 C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/orbitwise.v|
+!s90 -reportprogress|300|-work|work|C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/orbitwise.v|
+!s101 -O0
+!i113 1
+R3
+vRam
+!s110 1555028409
+!i10b 1
+!s100 kL[CUo`5JW@2hiKdQon9Q1
+IA[11FHF8Y60g23m[>YmA=0
+R1
+R0
+w1555028157
+8C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/ram.v
+FC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/ram.v
+L0 2
+R2
+r1
+!s85 0
+31
+!s108 1555028409.000000
+!s107 C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/ram.v|
+!s90 -reportprogress|300|-work|work|C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/ram.v|
+!s101 -O0
+!i113 1
+R3
+n@ram
+vRAMCON_test
+!s110 1554432032
+!i10b 1
+!s100 hcU4IPKDF]TO;eMQJ8:Xc0
+IQQSGfFz_Cjg;FbDPCFabE3
+R1
+R0
+w1554432027
+8C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/ramcon_test.v
+FC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/ramcon_test.v
+L0 3
+R2
+r1
+!s85 0
+31
+!s108 1554432032.000000
+!s107 C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/ramcon_test.v|
+!s90 -reportprogress|300|-work|work|C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/ramcon_test.v|
+!s101 -O0
+!i113 1
+R3
+n@r@a@m@c@o@n_test
+vSRA
+!s110 1554515292
+!i10b 1
+!s100 1LfC1hW58ofJ<5[l8=FRa1
+I8=jARMO^8aS`iMV69n^Ez3
+R1
+R0
+w1554428540
+8C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/SRA.v
+FC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/SRA.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1554515292.000000
+!s107 C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/SRA.v|
+!s90 -reportprogress|300|-work|work|C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/SRA.v|
+!s101 -O0
+!i113 1
+R3
+n@s@r@a
+vsub32bit
+!s110 1554428312
+!i10b 1
+!s100 K2gmiV8GbBVESbY?^4NNZ3
+IWIU3egaNHe:QgN`>k5Z^a0
+R1
+R0
+w1554075046
+8C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/sub32bit.v
+FC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/sub32bit.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1554428312.000000
+!s107 C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/sub32bit.v|
+!s90 -reportprogress|300|-work|work|C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/sub32bit.v|
+!s101 -O0
+!i113 1
+R3
+vxnorBitwise
+!s110 1554428449
+!i10b 1
+!s100 :AA4RBF59=BGYEchDeUQW2
+Izdl1HiTTDASzNg0meI^c43
+R1
+R0
+w1554428436
+8C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/xnorbitwise.v
+FC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/xnorbitwise.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1554428449.000000
+!s107 C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/xnorbitwise.v|
+!s90 -reportprogress|300|-work|work|C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/xnorbitwise.v|
+!s101 -O0
+!i113 1
+R3
+nxnor@bitwise
+vxorBitwise
+!s110 1554428571
+!i10b 1
+!s100 SRVV9Zcgh?b@>29aD^2RE0
+I2;`a3L[=CYC`GcoL0?WKk1
+R1
+R0
+w1554428564
+8C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/xorbitwise.v
+FC:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/xorbitwise.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1554428571.000000
+!s107 C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/xorbitwise.v|
+!s90 -reportprogress|300|-work|work|C:/Users/steli/Google Drive/Jounir Year/EE435/VerilogProjects/final_project/xorbitwise.v|
+!s101 -O0
+!i113 1
+R3
+nxor@bitwise
