@@ -4,7 +4,7 @@ module CON_test();
 
 reg clk,reset;
 wire RW,Valid,fetch;
-wire [4:0] Rc,Rb,Ra;
+wire [4:0] oppA,oppB;
 wire [5:0] opcode;
 wire [31:0] Data;
 wire [31:0] Data_in;
@@ -13,7 +13,7 @@ wire [7:0] Addr;
 wire [31:0] literal;
 wire ready,wrEn,rdEn;
 
-Control  C(literal,Valid,Rb,Ra,Rc,opcode,fetch,RW,ready,Data_in,clk,reset);
+Control  C(literal,Valid,regEn,oppB,oppA,opcode,fetch,RW,ready,Data,clk,reset);
 MemController con(Data_in,Data,ready,Addr,wrEn,rdEn,Valid,RW,Addr_in,reset,clk);
 Ram ram1(Data, Addr, rdEn, wrEn, clk);
 
