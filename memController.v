@@ -16,8 +16,8 @@ input clk,reset,RW,Valid;
 input [adwidth-1:0] Addr_in;
 
 //assgin the tri state buffers values
-assign data =(!RW && Valid)?data_in:32'bzz;
-assign data_in = (RW && Valid)?data:32'bzz;
+assign data =(!RW)?data_in:32'bzz;
+assign data_in = (RW)?data:32'bzz;
 assign Addr = Addr_in;
 
 always @ ( * ) begin

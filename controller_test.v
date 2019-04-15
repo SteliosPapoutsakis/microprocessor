@@ -11,15 +11,16 @@ wire [31:0] Data_in;
 reg [7:0] Addr_in;
 wire [7:0] Addr;
 wire [31:0] literal;
-wire ready,wrEn,rdEn;
+wire ready,wrEn,rdEn,datarn,addrn,increment;
 
-Control  C(literal,Valid,regEn,oppB,oppA,opcode,fetch,RW,ready,Data,clk,reset);
+Control control(datarn,addrn,increment,literal,Valid,regEn,oppB,oppA,opcode,fetch,RW,ready,Data,clk,reset);
 MemController con(Data_in,Data,ready,Addr,wrEn,rdEn,Valid,RW,Addr_in,reset,clk);
 Ram ram1(Data, Addr, rdEn, wrEn, clk);
 
 
 initial
  begin
+
    clk = 0;
    forever #10 clk = !clk;
 end

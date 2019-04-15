@@ -16,7 +16,9 @@ inout tri [DWIDTH-1:0] Data;
 reg [DWIDTH-1:0] Meme [ADepth-1:0];
 
 initial begin
-  Meme[250] = 32'b01100000000110001111111111110001;
+  Meme[100] = 32'b01100010000000000000000000000010;
+  Meme[101] = 32'b01100110000100000000000000000111;
+  Meme[2] = 32'h000034;
 end
 
 always @ (posedge clk) begin

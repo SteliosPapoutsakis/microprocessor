@@ -1,7 +1,10 @@
 `timescale 1ns/1ns
 import common::*;
+`define ENABLED 1'b1
+`define DISABLED 1'b0
 
-module Control(literal,Valid,regEn,oppB,oppA,opcode,fetch,RW,ready,data,clk,reset);
+module Control(DataCon,AddCon,increment,literal,Valid,regEn,oppB,oppA,opcode,RW,ready,data,clk,reset);
+
 
 input [31:0] data;
 input ready, clk, reset;
@@ -10,7 +13,7 @@ output reg [4:0] oppB;
 output reg [4:0] oppA;
 output reg [31:0] literal;
 output reg RW;
-output reg fetch,Valid,regEn;
+output reg Valid,regEn,increment,DataCon,AddCon;
 
 motherStates motherstate,nextmotherstate;
 States state,NextState;
@@ -19,22 +22,24 @@ reg [31:0] IR;
 always @(posedge reset or posedge clk)
 begin
 if(reset) begin
-state <= 4'b0;
+state <= State1;
 motherstate <= S_fetch;
 nextmotherstate <= S_fetch;
 NextState <= State1;
-opcode <= 6'b0;
-regEn <= 1'b0;
+opcode <= `DISABLED;
+regEn <= `DISABLED;
 oppA <= 5'b0;
 oppB <= 5'b0;
 literal <= 32'b0;
-fetch <= 1'b0;
-RW <= 1'b0;
-excuteEn <= 1'b0;
+IR <= 32'b0;
+increment <= `DISABLED;
+RW <= `DISABLED;
+DataCon <= `DISABLED;
+AddCon <= `DISABLED;
 end
 else begin
-state <= NextState;
-motherstate <= nextmotherstate;
+state = NextState;
+motherstate = nextmotherstate;
 end
 end
 
@@ -47,23 +52,19 @@ S_fetch: begin
 	case(state)
 //These states are part of the fetch FSM
 		State1: begin
-			fetch <= 1'b1;
-			Valid <= 1'b1;
-			RW <= 1'b1;
-			if(!ready)
-			NextState <= State2;
-			else
-			NextState <= State1;
+			//wait for the mem con to start read
+				Valid <= `ENABLED;
+				RW <= `ENABLED;
+				wait(!ready);
+				wait(ready);
+				NextState <= State2;
 		  end
-		  State2: begin
-			if(ready)
-			NextState <= 4'b0010;
-			else
-			NextState <= 4'b0001;
-			end
-			State3: begin
-			fetch <= 1'b0;
-			Valid <= 1'b0;
+//wating for read to be done
+
+			// lower signals and store in IR reg
+			State2: begin
+		  AddCon <= `DISABLED;
+			Valid <= `DISABLED;
 			IR <= data;
 			nextmotherstate <= S_Decode;
 			NextState <= State1;
@@ -71,8 +72,10 @@ S_fetch: begin
 			//fetch is done here
 		endcase
 end
+//decoding state
 S_Decode: begin
 			case(state)
+//branching based on the 3 main opperations
 			State1: begin
 			if(IR[31:30] == 2'b10)
 			NextState <= State2;
@@ -85,8 +88,7 @@ S_Decode: begin
 			State4: begin
 			literal <= {16'b0,IR[15:0]};
 			opcode <= IR[31:26];
-			oppA <= IR[25:21];
-			oppB <= IR[20:16];
+			oppA <= IR[20:16];
 			NextState <= State3;
 			nextmotherstate <= S_Execute;
 			end
@@ -95,29 +97,65 @@ S_Decode: begin
 S_Execute: begin
 		case(state)
 			State3: begin
+			AddCon <= `ENABLED;
 			if(opcode[2:0] == 3'b001)
-			NextState <= State4;
+			NextState <= State3;
 			else
-			NextState <= State5;
-		  end
-
-			State4: begin
+			NextState <= State1;
 			nextmotherstate <= S_store;
-			NextState <= State2;
 			end
-			endcase
-		end
+endcase
+end
+
+
 S_store: begin
 	case(state)
-		State2: begin
-		regEn <= 1'b0;
-		Valid <= 1'b1;
-		RW <= 1'b0;
+	//load state
+	   State1: begin
+			 Valid <= `ENABLED;
+			 RW <= `ENABLED;
+			 wait(!ready);
+			 wait(ready);
+			 AddCon <= `DISABLED;
+			  NextState <= State2;
+				 oppA <= IR[25:21];
+				regEn <= `ENABLED;
+				end
 
-		end
+			 State2: begin
+			 regEn = `DISABLED;
+			 Valid <= `DISABLED;
+			 RW <= `DISABLED;
+			  increment <= `ENABLED;
+			  NextState <= State1;
+				nextmotherstate <= S_fetch;
+			 end
+			 // end load op
+
+       //store state
+			  State3: begin
+				DataCon <= `ENABLED;
+				 oppB <= IR[25:21];
+				 RW <= `DISABLED;
+				 Valid <= `ENABLED;
+				 wait(!ready);
+				 wait(ready);
+				 NextState <= State1;
+				 nextmotherstate <= S_fetch;
+				 end
+				 //end store state
 
 
+
+
+
+
+
+
+	endcase
+      end
 endcase
 end
 end
+
 endmodule
