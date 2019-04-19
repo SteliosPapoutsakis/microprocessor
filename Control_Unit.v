@@ -3,7 +3,7 @@ import common::*;
 `define ENABLED 1'b1
 `define DISABLED 1'b0
 
-module Control(DataCon,AddCon,increment,literal,Valid,regEn,oppB,oppA,opcode,RW,ready,data,clk,reset);
+module Control(fetch,Datawr_En,Addwr_En,regEn,PCEn,DataBus_En,store_en,increment,literal,Valid,oppB,oppA,opcode,RW,ready,data,clk,reset);
 
 
 input [31:0] data;
@@ -12,8 +12,7 @@ output reg [5:0] opcode;
 output reg [4:0] oppB;
 output reg [4:0] oppA;
 output reg [31:0] literal;
-output reg RW;
-output reg Valid,regEn,increment,DataCon,AddCon;
+output reg Valid,regEn,increment,Datawr_En,Addwr_En,PCEn,DataBus_En,store_en,RW,fetch;
 
 motherStates motherstate,nextmotherstate;
 States state,NextState;
@@ -26,16 +25,20 @@ state <= State1;
 motherstate <= S_fetch;
 nextmotherstate <= S_fetch;
 NextState <= State1;
-opcode <= `DISABLED;
-regEn <= `DISABLED;
+opcode <= 6'b0;
 oppA <= 5'b0;
 oppB <= 5'b0;
 literal <= 32'b0;
 IR <= 32'b0;
+regEn <= `DISABLED;
 increment <= `DISABLED;
 RW <= `DISABLED;
-DataCon <= `DISABLED;
-AddCon <= `DISABLED;
+Datawr_En <= `DISABLED;
+Addwr_En <= `DISABLED;
+PCEn <= `DISABLED;
+DataBus_En <= `DISABLED;
+store_en <= `DISABLED;
+fetch <= `DISABLED;
 end
 else begin
 state = NextState;
@@ -53,18 +56,21 @@ S_fetch: begin
 //These states are part of the fetch FSM
 		State1: begin
 			//wait for the mem con to start read
-				Valid <= `ENABLED;
-				RW <= `ENABLED;
+			  fetch <= `ENABLED;
+				Addwr_En <= `ENABLED;
+				#1 Valid <= `ENABLED;
+				#1 RW <= `ENABLED;
 				wait(!ready);
 				wait(ready);
 				NextState <= State2;
 		  end
-//wating for read to be done
+     //wating for read to be done
 
-			// lower signals and store in IR reg
+		// lower signals and store in IR reg
 			State2: begin
 		  AddCon <= `DISABLED;
 			Valid <= `DISABLED;
+			Addwr_En <= `DISABLED;
 			IR <= data;
 			nextmotherstate <= S_Decode;
 			NextState <= State1;
