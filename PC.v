@@ -6,10 +6,10 @@ input reset,increment;
 
 
 
-always @(reset or posedge increment) begin
+always @(posedge reset or posedge increment) begin
 // the instructions start at 0x64 in our micro controller
-  if(reset) out<=32'h64;
-  else out <= out + {31'b0,1'b1};
+  if(reset) out<=32'h190;
+  else out <= out + {28'b0,4'b0100};
   end
 
 

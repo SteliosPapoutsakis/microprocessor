@@ -3,7 +3,7 @@
 module MemController(data_in,data,ready,Addr,wrEn,rdEn,Valid,RW,Addr_in,reset,clk);
 
 parameter width = 32;
-parameter adwidth = 16;
+parameter adwidth = 32;
 
 output reg rdEn,wrEn,ready;
 output [adwidth-1:0] Addr;
@@ -18,7 +18,7 @@ input [adwidth-1:0] Addr_in;
 //assgin the tri state buffers values
 assign data =(!RW)?data_in:32'bzz;
 assign data_in = (RW)?data:32'bzz;
-assign Addr = Addr_in;
+assign Addr = Addr_in / 4;
 
 always @ ( * ) begin
   if(reset) fork
