@@ -6,7 +6,7 @@ import common::*;
 //Written by STelios and JEssie
 //this is all behavoiral
 
-module Control(fetch,Datawr_En,Addwr_En,regEn,PCEn,DataBus_En,store_en,Branch_En,increment,literal,Valid,oppB,oppA,opcode,RW,ready,data,clk,reset);
+module Control(fetch,store_PC,Datawr_En,Addwr_En,regEn,PCEn,DataBus_En,store_en,Branch_En,increment,literal,Valid,oppB,oppA,opcode,RW,ready,data,clk,reset);
 
 
 input [31:0] data;
@@ -15,7 +15,7 @@ output reg [5:0] opcode;
 output reg [4:0] oppB;
 output reg [4:0] oppA;
 output reg [31:0] literal;
-output reg Valid,regEn,increment,Datawr_En,Addwr_En,PCEn,DataBus_En,store_en,RW,fetch,Branch_En;
+output reg Valid,regEn,increment,Datawr_En,Addwr_En,PCEn,DataBus_En,store_en,RW,fetch,Branch_En,store_PC;
 
 motherStates motherstate,nextmotherstate;
 States state,NextState;
@@ -44,6 +44,7 @@ if(reset) begin
 	store_en <= `DISABLED;
 	fetch <= `DISABLED;
 	Branch_En <= `DISABLED;
+	store_PC <= `DISABLED;
 end
 else begin
 //else we want next state tranistions
