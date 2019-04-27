@@ -6,7 +6,8 @@ import common::*;
 //Written by STelios and JEssie
 //this is all behavoiral
 
-module Control(fetch,store_PC,Datawr_En,Addwr_En,regEn,PCEn,DataBus_En,store_en,Branch_En,increment,literal,Valid,oppB,oppA,opcode,RW,ready,data,clk,reset);
+module Control(fetch,store_PC,Datawr_En,Addwr_En,regEn,PCEn,DataBus_En,store_databusvalue,Branch_En,
+	increment,literal,Valid,oppB,oppA,opcode,literalEn,RW,ready,data,clk,reset);
 
 
 input [31:0] data;
@@ -15,7 +16,7 @@ output reg [5:0] opcode;
 output reg [4:0] oppB;
 output reg [4:0] oppA;
 output reg [31:0] literal;
-output reg Valid,regEn,increment,Datawr_En,Addwr_En,PCEn,DataBus_En,store_en,RW,fetch,Branch_En,store_PC;
+output reg Valid,regEn,increment,Datawr_En,Addwr_En,PCEn,DataBus_En,store_databusvalue,RW,fetch,Branch_En,store_PC,literalEn;
 
 motherStates motherstate,nextmotherstate;
 States state,NextState;
@@ -41,13 +42,16 @@ if(reset) begin
 	Addwr_En <= `DISABLED;
 	PCEn <= `DISABLED;
 	DataBus_En <= `DISABLED;
-	store_en <= `DISABLED;
+	store_databusvalue<= `DISABLED;
 	fetch <= `DISABLED;
 	Branch_En <= `DISABLED;
 	store_PC <= `DISABLED;
+	literalEn <= `DISABLED;
+	Valid <= `DISABLED;
+
 end
 else begin
-//else we want next state tranistions
+//QUEST??????????????????? why does this not work in non blocking?
 	state = NextState;
 	motherstate = nextmotherstate;
 end
@@ -63,7 +67,7 @@ S_fetch: begin
 //These states are part of the fetch FSM
 		State1: begin
 			//wait for the mem con to start read
-			  increment <= `DISABLED;
+
 			  fetch <= `ENABLED;
 				Addwr_En <= `ENABLED;
 				Valid <= `ENABLED;
@@ -77,7 +81,8 @@ S_fetch: begin
 
 		// lower signals and store in IR reg, go to decode
 			State2: begin
-			Valid <= `DISABLED;
+  		increment <= `ENABLED;
+		 	Valid <= `DISABLED;
 			Addwr_En <= `DISABLED;
 			fetch <= `DISABLED;
 			IR <= data;
@@ -92,12 +97,17 @@ S_Decode: begin
 			case(state)
 //branching based on the 3 main opperations
 			State1: begin
+  		increment <= `DISABLED;
 			if(IR[31:30] == 2'b10)
 			NextState <= State2;
 			else if(IR[31:30] == 2'b11)
 			NextState <= State3;
-			else if(IR[31:30] == 2'b01)
-			NextState <= State4;
+			else if(IR[31:30] == 2'b01) begin
+				if(IR[28:26] == 3'b000 || IR[28:26] == 3'b001 ||IR[28:26] == 3'b111)
+				NextState <= State4;
+				else
+				NextState <= State5;
+				end
 			end
 			//this is for 2 opperations instructions arthrimatic
 			State2: begin
@@ -105,55 +115,142 @@ S_Decode: begin
 			opcode <= IR[31:26];
 			oppA <= IR[20:16];
 			oppB <= IR[15:11];
+			literalEn <= `DISABLED;
 			NextState <= State1;
 			nextmotherstate <= S_ExecuteArth;
 			end
 			// this is for 1 opperation arthmatic
 			State3: begin
-			literal <= {16'b0,IR[15:0]};
+			literal <= {{16{IR[15]}},IR[15:0]};
 			opcode <= IR[31:26];
 			oppA <= IR[20:16];
+			oppB <= 5'b11111;
+			literalEn <= `ENABLED;
 			NextState <= State1;
 			nextmotherstate <= S_ExecuteArth;
 			end
 			//this state is for LD,Store instructions
 			State4: begin
-			literal <= {16'b0,IR[15:0]};
+			literal <= {{16{IR[15]}},IR[15:0]};
 			opcode <= IR[31:26];
 			oppA <= IR[20:16];
+			oppB <= 5'b11111;
+			literalEn <= `ENABLED;
 			NextState <= State1;
-			nextmotherstate <= S_ExecuteBLS;
+			nextmotherstate <= S_ExecuteLS;
+			end
+			State5: begin
+			literal <= {{16{IR[15]}},IR[15:0]};
+			opcode <= IR[31:26];
+			oppA <= IR[25:21];
+			oppB <= 5'b11111;
+			literalEn <= `DISABLED;
+			NextState <= State1;
+			nextmotherstate <= S_ExecuteBR;
 			end
 			endcase
   end
 
 //this execute is for arthemtic operations
 	S_ExecuteArth: begin
-	case (state)
-	State1: begin
-	Datawr_En <= `ENABLED;
-	store_en <= `DISABLED;
-	nextmotherstate <= S_store;
-	NextState <= State4;
-	end
-	endcase
+		case (state)
+		State1: begin
+		Datawr_En <= `ENABLED;
+		store_databusvalue <= `DISABLED;
+		nextmotherstate <= S_store;
+		NextState <= State4;
+		end
+		endcase
 	end
 
-	S_ExecuteBLS: begin
+	S_ExecuteLS: begin
 		case (state)
 		  //this state gets address on bus for load and store
 			State1: begin
 			Addwr_En <= `ENABLED;
 			if(opcode[2:0] == 3'b001)
-			NextState <= State3;
+			//is this a store instruction?
+			NextState <= State2;
 			else if(opcode[2:0] == 3'b000)
-			NextState <= State1;
-			nextmotherstate <= S_store;
+			NextState <= State3;
+			else
+			NextState <= State4;
 			end
 
-		endcase
+			//for store
+			State2: begin
+			Addwr_En <= `DISABLED;
+		 oppA <= IR[25:21];
+		literalEn <= `DISABLED;
+		 Datawr_En <= `ENABLED;
+		 DataBus_En <= `ENABLED;
+		 NextState <= State3;
+		 nextmotherstate <= S_store;
+		 end
 
+
+			//closing signal for load
+			State3: begin
+			Branch_En <= `DISABLED;
+			Addwr_En <= `DISABLED;
+		 oppA <= IR[25:21];
+		 NextState <= State1;
+		 nextmotherstate <= S_store;
+		 end
+
+		 State4:begin
+		 Branch_En <= `ENABLED;
+		 literal <= 4*literal;
+		 NextState <= State3;
+		  endcase
 	end
+
+
+//branching exicute
+	S_ExecuteBR: begin
+		case(state)
+			State1: begin
+			//storing pc values in a reg
+			store_PC <= `ENABLED;
+			regEn <= `ENABLED;
+			if(opcode[1:0] == 3'b11)
+			NextState <= State2;
+			else
+			NextState <= State3;
+			end
+//this is for jump
+			State2: begin
+			store_PC <= `DISABLED;
+			regEn <= `DISABLED;
+			oppA <= IR[20:16];
+			Datawr_En <= `ENABLED;
+			NextState <= State6;
+			nextmotherstate <= S_store;
+			end
+//this state is for BNE BEQ operations
+			State3: begin
+//write the value of is reg a = 0? on the data bus
+   	store_PC <= `DISABLED;
+			regEn <= `DISABLED;
+			oppA <= IR[20:16];
+			Datawr_En <= `ENABLED;
+			DataBus_En <= `ENABLED;
+			NextState <= State4;
+			end
+
+			State4: begin
+				Datawr_En <= `DISABLED;
+				// if this is the case, we want to branch!
+				if(data && opcode[2:0] == 3'b101 || !data && opcode[2:0] == 3'b100)
+				NextState <= State7;
+				else
+				NextState <= State5;
+				nextmotherstate <= S_store;
+				end
+
+		endcase
+	end
+
 
 
 
@@ -163,41 +260,40 @@ S_store: begin
 	case(state)
 	//*****************
 	//States 1-3 are for load and store//
+	//this is for load
 	   State1: begin
-		 	Addwr_En <= `DISABLED;
-			 Valid <= `ENABLED;
-			 RW <= `ENABLED;
-			 oppA <= IR[25:21];
+ 	 	store_databusvalue <= `ENABLED;
+		Datawr_En <= `ENABLED;
+		 Valid <= `ENABLED;
+		 RW <= `ENABLED;
 			 //handshake
 			 wait(!ready);
 			 wait(ready);
 			 Valid <= `DISABLED;
-			 store_en <= `ENABLED;
+			 store_databusvalue <= `DISABLED;
+	 		Datawr_En <= `DISABLED;
 			 regEn <= `ENABLED;
 			 NextState <= State2;
 			 end
+			 //closig signals for file reg
 			 State2: begin
-			 regEn = `DISABLED;
-			 store_en = `DISABLED;
-			  increment <= `ENABLED;
+			 regEn <= `DISABLED;
+			 store_databusvalue <= `DISABLED;
 			  NextState <= State1;
 				nextmotherstate <= S_fetch;
 			 end
 			 //store state
 			  State3: begin
-				 	Addwr_En <= `DISABLED;
-			  	oppA <= IR[25:21];
-					literal <= 32'b0;
-				  Datawr_En <= `ENABLED;
-				  DataBus_En <= `ENABLED;
+				Datawr_En <= `DISABLED;
+				Valid <= `ENABLED;
 				 RW <= `DISABLED;
 				 Valid <= `ENABLED;
 				 wait(!ready);
 				 wait(ready);
+				 Valid <= `DISABLED;
+				 DataBus_En <= `DISABLED;
 				 NextState <= State1;
 				 nextmotherstate <= S_fetch;
-				 Datawr_En <= `DISABLED;
-				 DataBus_En <= `DISABLED;
 				 end
 				 // end load store States
 				//****************
@@ -209,18 +305,29 @@ S_store: begin
 				 NextState <= State5;
 				 end
 				 State5: begin
+				 DataBus_En <= `DISABLED;
 				 regEn <= `DISABLED;
+				 PCEn <= `DISABLED;
 				 nextmotherstate <= S_fetch;
 				 NextState <= State1;
-				 increment <= `ENABLED;
+				 end
+				 //this is to store a value in pc
+				 State6: begin
+				 Branch_En <= `DISABLED;
+				 Datawr_En <= `DISABLED;
+				 PCEn <= `ENABLED;
+				 NextState <= State5;
 				 end
 
-
-
-
-
-
-
+				 //this is for branching with a literal
+				 State7: begin
+				 Branch_En <= `ENABLED;
+				 literal <= literal * 4;
+				 literalEn <= `ENABLED;
+				 DataBus_En <= `DISABLED;
+				 Datawr_En <= `ENABLED;
+				 NextState <= State6;
+				 end
 
 
 
