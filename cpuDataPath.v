@@ -1,14 +1,14 @@
 //this is a data flow path for the micro processor
 
 module Data_path(Address,data,Valid,regEn,oppB,oppA,opcode,literal,
-  increment,reset,Branch_En,fetch,DataBus_En,store_en,wrData,wrAdd,store_PC,literalEn,PCEn);
+  increment,reset,Branch_En,fetch,DataBus_En,store_en,Datareg_wr_En,Addreg_wr_En,store_PC,literalEn,PC_wr_En);
 parameter WIDTH = 32;
 parameter AWIDTH = 32;
 
 inout tri [AWIDTH-1:0] Address;
 inout tri [WIDTH-1:0] data;
 
-input Valid,regEn,increment,Branch_En,fetch,DataBus_En,store_en,reset,wrData,wrAdd,store_PC,literalEn,PCEn;
+input Valid,regEn,increment,Branch_En,fetch,DataBus_En,store_en,reset,Datareg_wr_En,Addreg_wr_En,store_PC,literalEn,PC_wr_En;
 
 input [4:0] oppA,oppB;
 input [WIDTH-1:0] literal;
@@ -23,9 +23,9 @@ wire NEG;
 //creating the reg file
 reg_file regg(interconect[0],interconect[1],regorPC_in,oppA,oppB,regEn);
 ALU alu(interconect[2], ALU1_In,ALU2_in, (opcode[5:4]==2'b01)?{3'b000,NEG}:opcode[3:0]);
-PC pc(out,reset,regorPC_in,increment,PCEn);
-register dataR(dataR_out,data_in,wrData);
-register AddR(Address,AddR_in,wrAdd);
+PC pc(out,reset,regorPC_in,increment,PC_wr_En);
+register dataR(dataR_out,data_in,Datareg_wr_En);
+register AddR(Address,AddR_in,Addreg_wr_En);
 twoComp comp(interconect[3],NEG,literal);
 
 
